@@ -1,0 +1,56 @@
+name: CI-CD SQL Database
+
+on:
+  push:
+    branches: [ "main" ]
+  # optionally, add pull_request if you want to test builds on PRs
+  # pull_request:
+  #   branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      # Step 1: Check out repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Setup MSBuild (Visual Studio build tools)
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.3.1
+
+      # Step 3: Build the .sqlproj (Release configuration)
+      - name: Build Database Project
+        run: msbuild.exe Database/MyDatabaseProject.sqlproj /p:Configuration=Release
+
+      # Step 4: Upload the DACPAC as an artifact
+      - name: Upload DACPAC artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: db-dacpac
+          path: Database/bin/Release/*.dacpac
+
+  deploy_to_production:
+    # This job depends on the build job
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+      # Step 1: Download the DACPAC artifact from the build job
+      - name: Download DACPAC artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: db-dacpac
+          path: ./
+
+      # Step 2: Deploy to Production
+      - name: Deploy to Production
+        uses: azure/sql-action@v2
+        with:
+          # Use the secret we created for the connection string
+          connection-string: ${{ secrets.PROD_SQL_CONNECTION_STRING }}
+          action: 'publish'
+          path: './MyDatabaseProject.dacpac'
+          arguments: '/p:BlockOnPossibleDataLoss=true'
+          # /p:BlockOnPossibleDataLoss=true ensures it won't drop columns if data might be lost,
+          # prompting an error instead. Good safety measure in Production.
