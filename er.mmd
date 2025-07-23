@@ -1,0 +1,283 @@
+erDiagram
+[Person]_[Address] {
+  AddressID
+  AddressLine1
+  AddressLine2
+  City
+  StateProvinceID
+  PostalCode
+  SpatialLocation
+  rowguid
+  ModifiedDate
+}
+[Person]_[AddressType] {
+  AddressTypeID
+  Name
+  rowguid
+  ModifiedDate
+}
+[dbo]_[AWBuildVersion] {
+  SystemInformationID
+  Database Version
+  VersionDate
+  ModifiedDate
+}
+[Production]_[BillOfMaterials] {
+  BillOfMaterialsID
+  ProductAssemblyID
+  ComponentID
+  StartDate
+  EndDate
+  UnitMeasureCode
+  BOMLevel
+  PerAssemblyQty
+  ModifiedDate
+}
+[Person]_[BusinessEntity] {
+  BusinessEntityID
+  rowguid
+  ModifiedDate
+}
+[Person]_[BusinessEntityAddress] {
+  BusinessEntityID
+  AddressID
+  AddressTypeID
+  rowguid
+  ModifiedDate
+}
+[Person]_[BusinessEntityContact] {
+  BusinessEntityID
+  PersonID
+  ContactTypeID
+  rowguid
+  ModifiedDate
+}
+[HumanResources]_[Calendar] {
+  DateID
+  Date
+  Year
+  TextMonth
+  DateMonth
+  DayOfWeek
+  IsBusinessDay
+}
+[Person]_[ContactType] {
+  ContactTypeID
+  Name
+  ModifiedDate
+}
+[Person]_[CountryRegion] {
+  CountryRegionCode
+  Name
+  ModifiedDate
+}
+[Sales]_[CountryRegionCurrency] {
+  CountryRegionCode
+  CurrencyCode
+  ModifiedDate
+}
+[Sales]_[CreditCard] {
+  CreditCardID
+  CardType
+  CardNumber
+  ExpMonth
+  ExpYear
+  ModifiedDate
+}
+[Production]_[Culture] {
+  CultureID
+  Name
+  ModifiedDate
+}
+[Sales]_[Currency] {
+  CurrencyCode
+  Name
+  ModifiedDate
+}
+[Sales]_[CurrencyRate] {
+  CurrencyRateID
+  CurrencyRateDate
+  FromCurrencyCode
+  ToCurrencyCode
+  AverageRate
+  EndOfDayRate
+  ModifiedDate
+}
+[Sales]_[Customer] {
+  CustomerID
+  PersonID
+  StoreID
+  TerritoryID
+  AccountNumber
+  rowguid
+  ModifiedDate
+}
+[dbo]_[DatabaseLog] {
+  DatabaseLogID
+  PostTime
+  DatabaseUser
+  Event
+  Schema
+  Object
+  TSQL
+  XmlEvent
+}
+[HumanResources]_[Department] {
+  DepartmentID
+  Name
+  GroupName
+  ModifiedDate
+}
+[Production]_[Document] {
+  DocumentNode
+  DocumentLevel
+  Title
+  Owner
+  FolderFlag
+  FileName
+  FileExtension
+  Revision
+  ChangeNumber
+  Status
+  DocumentSummary
+  Document
+  rowguid
+  ModifiedDate
+}
+[Person]_[EmailAddress] {
+  BusinessEntityID
+  EmailAddressID
+  EmailAddress
+  rowguid
+  ModifiedDate
+}
+[HumanResources]_[Employee] {
+  BusinessEntityID
+  NationalIDNumber
+  LoginID
+  OrganizationNode
+  OrganizationLevel
+  JobTitle
+  BirthDate
+  MaritalStatus
+  Gender
+  HireDate
+  SalariedFlag
+  VacationHours
+  SickLeaveHours
+  CurrentFlag
+  rowguid
+  ModifiedDate
+}
+[HumanResources]_[EmployeeDepartmentHistory] {
+  BusinessEntityID
+  DepartmentID
+  ShiftID
+  StartDate
+  EndDate
+  ModifiedDate
+}
+[HumanResources]_[EmployeePayHistory] {
+  BusinessEntityID
+  RateChangeDate
+  Rate
+  PayFrequency
+  ModifiedDate
+}
+[dbo]_[ErrorLog] {
+  ErrorLogID
+  ErrorTime
+  UserName
+  ErrorNumber
+  ErrorSeverity
+  ErrorState
+  ErrorProcedure
+  ErrorLine
+  ErrorMessage
+}
+[Production]_[Illustration] {
+  IllustrationID
+  Diagram
+  ModifiedDate
+}
+[HumanResources]_[JobCandidate] {
+  JobCandidateID
+  BusinessEntityID
+  Resume
+  ModifiedDate
+}
+[Production]_[Location] {
+  LocationID
+  Name
+  CostRate
+  Availability
+  ModifiedDate
+}
+[Person]_[Password] {
+  BusinessEntityID
+  PasswordHash
+  PasswordSalt
+  rowguid
+  ModifiedDate
+}
+[Person]_[Person] {
+  BusinessEntityID
+  PersonType
+  NameStyle
+  Title
+  FirstName
+  MiddleName
+  LastName
+  Suffix
+  EmailPromotion
+  AdditionalContactInfo
+  Demographics
+  rowguid
+  ModifiedDate
+}
+[Sales]_[PersonCreditCard] {
+  BusinessEntityID
+  CreditCardID
+  ModifiedDate
+}
+[Person]_[PersonPhone] {
+  BusinessEntityID
+  PhoneNumber
+  PhoneNumberTypeID
+  ModifiedDate
+}
+[Person]_[PhoneNumberType] {
+  PhoneNumberTypeID
+  Name
+  ModifiedDate
+}
+[Production]_[Product] {
+  ProductID
+  Name
+  ProductNumber
+  MakeFlag
+  FinishedGoodsFlag
+  Color
+  SafetyStockLevel
+  ReorderPoint
+  StandardCost
+  ListPrice
+  Size
+  SizeUnitMeasureCode
+  WeightUnitMeasureCode
+  Weight
+  DaysToManufacture
+  ProductLine
+  Class
+  Style
+  ProductSubcategoryID
+  ProductModelID
+  SellStartDate
+  SellEndDate
+  DiscontinuedDate
+  rowguid
+  ModifiedDate
+}
+[Production]_[ProductCategory] {
+  ProductCategoryID
+  }
